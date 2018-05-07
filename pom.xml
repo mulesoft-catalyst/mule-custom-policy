@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>b85b361d-0842-4b70-af37-2723c2c3ae7e</groupId>
+	<artifactId>mule-custom-policy</artifactId>
+	<version>0.0.4</version>
+	<packaging>mule-policy</packaging>
+	<name>Mule Custom Policy Template</name>
+
+	<properties>
+		<repository.id>anypoint</repository.id>
+		<mule.maven.plugin.version>3.0.0</mule.maven.plugin.version>
+		<exchange.url>https://maven.anypoint.mulesoft.com/api/v1/organizations/${project.groupId}/maven</exchange.url>
+	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>${repository.id}</id>
+			<name>Demos Repository</name>
+			<url>${exchange.url}</url>
+			<layout>default</layout>
+		</repository>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mule.tools.maven</groupId>
+				<artifactId>mule-maven-plugin</artifactId>
+				<version>${mule.maven.plugin.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>upload-template</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy-file</goal>
+						</goals>
+						<configuration>
+							<repositoryId>${repository.id}</repositoryId>
+							<url>${exchange.url}</url>
+							<file>${project.basedir}/${project.artifactId}.yaml</file>
+							<generatePom>false</generatePom>
+							<artifactId>${project.artifactId}</artifactId>
+							<groupId>${project.groupId}</groupId>
+							<version>${project.version}</version>
+							<packaging>yaml</packaging>
+							<classifier>policy-definition</classifier>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<!-- -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.mule.tools.maven
+										</groupId>
+										<artifactId>
+											mule-maven-plugin
+										</artifactId>
+										<versionRange>
+											[3.0.0,)
+										</versionRange>
+										<goals>
+											<goal>validate</goal>
+											<goal>
+												generate-sources
+											</goal>
+											<goal>
+												generate-test-sources
+											</goal>
+											<goal>compile</goal>
+											<goal>initialize</goal>
+											<goal>process-sources</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		 
+	</build>
+</project>

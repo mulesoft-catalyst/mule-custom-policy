@@ -1,0 +1,21 @@
+id: mule-custom-policy
+name: Mule Custom Policy
+supportedPoliciesVersions: '>=v1'
+description: The custom policy description
+category: Custom
+type: custom
+resourceLevelSupported: false
+gatewayCompatibility: '>=4.1.0'
+standalone: true
+requiredCharacteristics: []
+providedCharacteristics:
+ - Add a Custom Header
+configuration:
+  - propertyName: exposeHeaders
+    name: Expose Headers
+    description: |
+        Defines if headers should be exposed in the response to the client. The header is: mule-custom-policy.
+    type: boolean
+    optional: true
+    defaultValue: true
+    allowMultiple: false
