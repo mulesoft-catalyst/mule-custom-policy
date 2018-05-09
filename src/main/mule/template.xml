@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" 
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" 
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:http-policy="http://www.mulesoft.org/schema/mule/http-policy"
 	xmlns:http-transform="http://www.mulesoft.org/schema/mule/http-policy-transform"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-               http://www.mulesoft.org/schema/mule/http-policy http://www.mulesoft.org/schema/mule/http-policy/current/mule-http-policy.xsd
-               http://www.mulesoft.org/schema/mule/http-policy-transform http://www.mulesoft.org/schema/mule/http-policy-transform/current/mule-http-policy-transform.xsd">
+	xsi:schemaLocation="
+	http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+	http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd 
+	http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+	http://www.mulesoft.org/schema/mule/http-policy http://www.mulesoft.org/schema/mule/http-policy/current/mule-http-policy.xsd
+	http://www.mulesoft.org/schema/mule/http-policy-transform http://www.mulesoft.org/schema/mule/http-policy-transform/current/mule-http-policy-transform.xsd">
 
-	<http-policy:proxy name="my-policy-template">
+	<http-policy:proxy name="mule-policy-template">
 		<http-policy:source>
 			<try>
 				<http-policy:execute-next />
-				{{#if exposeHeaders}}
 				<http-transform:add-headers outputType="response">
-					<http-transform:headers>#[
-						{
-						'my-custom-policy': 'Hello World!'
-						}
-						]
-					</http-transform:headers>
+					<http-transform:headers>#[{'mule-custom-policy': 'Hello World!'}]</http-transform:headers>
 				</http-transform:add-headers>
-				{{/if}}
 			</try>
 		</http-policy:source>
 	</http-policy:proxy>

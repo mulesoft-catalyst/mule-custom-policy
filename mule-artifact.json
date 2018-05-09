@@ -1,19 +1,24 @@
 {
-  "name": "mule-custom-policy-template",
-  "minMuleVersion": "4.1.0",
-  "requiredProduct": "MULE_EE",
-  "classLoaderModelLoaderDescriptor": {
-    "id": "mule",
-    "attributes": {}
-  },
-  "bundleDescriptorLoader": {
-    "id": "mule",
-    "attributes": {
-      "groupId": "b85b361d-0842-4b70-af37-2723c2c3ae7e",
-      "artifactId": "mule-custom-policy",
-      "version": "0.0.1-SNAPSHOT",
-      "classifier": "mule-policy",
-      "type": "jar"
-    }
-  }
+	"configs": [
+		"template.xml"
+	],
+	"name": "mule-custom-policy-template",
+	"minMuleVersion": "4.1.0",
+	"requiredProduct": "MULE_EE",
+	"classLoaderModelLoaderDescriptor": {
+		"id": "mule",
+		"attributes": {
+			
+		}
+	},
+	"bundleDescriptorLoader": {
+		"id": "mule",
+		"attributes": {
+			"groupId": "b85b361d-0842-4b70-af37-2723c2c3ae7e",
+			"artifactId": "mule-custom-policy",
+			"version": "0.2.3",
+			"classifier": "mule-policy",
+			"type": "jar"
+		}
+	}
 }
